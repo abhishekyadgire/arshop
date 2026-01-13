@@ -22,3 +22,33 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Firebase
+google-services.json
+
+# Android Studio
+.idea/
+.gradle/
+local.properties
+*.iml
+.DS_Store
+
+# Build
+build/
+*.apk
+*.aab
+app/release/
+app/debug/
+
+# Sensitive
+keystore.properties
+*.jks
+*.keystore
+
+# Generated files
+bin/
+gen/
+out/
+captures/
+.externalNativeBuild
+.cxx
