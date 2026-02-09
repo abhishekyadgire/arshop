@@ -7,6 +7,7 @@ import com.arshop.data.model.Product
 import com.arshop.repository.CartRepository
 import com.arshop.repository.ProductRepository
 import com.arshop.util.Result
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(
     private val productRepository: ProductRepository,
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    private val auth: FirebaseAuth
 ) : ViewModel() {
     
     private val _product = MutableStateFlow<Product?>(null)

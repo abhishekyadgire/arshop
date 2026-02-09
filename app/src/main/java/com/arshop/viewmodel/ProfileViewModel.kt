@@ -7,6 +7,7 @@ import com.arshop.data.model.User
 import com.arshop.repository.AuthRepository
 import com.arshop.repository.UserRepository
 import com.arshop.util.Result
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val auth: FirebaseAuth
 ) : ViewModel() {
     
     private val _user = MutableStateFlow<User?>(null)

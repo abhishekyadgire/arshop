@@ -7,6 +7,7 @@ import com.arshop.repository.CartRepository
 import com.arshop.util.Result
 import com.arshop.util.Constants
 import com.arshop.util.PriceUtils
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +21,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class CartViewModel @Inject constructor(
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    private val auth: FirebaseAuth
 ) : ViewModel() {
     
     private val _cartItems = MutableStateFlow<List<CartItem>>(emptyList())
@@ -148,7 +150,8 @@ class CartViewModel @Inject constructor(
     /**
      * Clears all items from cart.
      */
-    fun clearCart(userId: String) {
+    fun clearCart() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             cartRepository.clearCart(userId)
                 .collect { result ->
@@ -208,7 +211,8 @@ class CartViewModel @Inject constructor(
     /**
      * Syncs cart with Firestore.
      */
-    fun syncCart(userId: String) {
+    fun syncCart() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             cartRepository.syncCart(userId)
                 .collect { result ->

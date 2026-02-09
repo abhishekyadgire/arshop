@@ -14,6 +14,7 @@ import com.arshop.ui.state.CheckoutState
 import com.arshop.ui.state.CheckoutStep
 import com.arshop.util.PriceUtils
 import com.arshop.util.Result
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +29,10 @@ import javax.inject.Inject
 @HiltViewModel
 class CheckoutViewModel @Inject constructor(
     private val cartRepository: CartRepository,
+    private val userRepository: UserRepository,
+    private val orderRepository: OrderRepository,
+    private val auth: FirebaseAuth
+) : ViewModel() {
     private val orderRepository: OrderRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {

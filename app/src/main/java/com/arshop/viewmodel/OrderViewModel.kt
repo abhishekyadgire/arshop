@@ -7,6 +7,7 @@ import com.arshop.data.model.OrderItem
 import com.arshop.repository.CartRepository
 import com.arshop.repository.OrderRepository
 import com.arshop.util.Result
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(
     private val orderRepository: OrderRepository,
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    private val auth: FirebaseAuth
 ) : ViewModel() {
     
     private val _orders = MutableStateFlow<List<Order>>(emptyList())
@@ -125,9 +127,7 @@ class OrderViewModel @Inject constructor(
                         is Result.Success -> {
                             _cancelSuccess.value = true
                             // Reload orders to get updated status
-                            _selectedOrder.value?.userId?.let { userId ->
-                                loadOrders(userId)
-                            }
+                            loadOrders()
                             _loading.value = false
                         }
                         is Result.Failure -> {
@@ -222,13 +222,14 @@ class OrderViewModel @Inject constructor(
     /**
      * Syncs orders with Firestore.
      */
-    fun syncOrders(userId: String) {
+    fun syncOrders() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             orderRepository.syncOrders(userId)
                 .collect { result ->
                     when (result) {
                         is Result.Success -> {
-                            loadOrders(userId)
+                            loadOrders()
                         }
                         is Result.Failure -> {
                             _error.value = result.exception.message 
