@@ -6,7 +6,6 @@ import com.arshop.data.model.Address
 import com.arshop.data.model.Order
 import com.arshop.data.model.OrderItem
 import com.arshop.data.model.OrderStatusUpdate
-import com.google.firebase.Timestamp
 import com.google.gson.Gson
 
 /**
@@ -73,8 +72,8 @@ data class OrderEntity(
             orderStatus = orderStatus,
             trackingNumber = trackingNumber,
             statusHistory = statusHistory,
-            createdAt = Timestamp(createdAt / 1000, ((createdAt % 1000) * 1000000).toInt()),
-            updatedAt = Timestamp(updatedAt / 1000, ((updatedAt % 1000) * 1000000).toInt())
+            createdAt = EntityConverters.longToTimestamp(createdAt),
+            updatedAt = EntityConverters.longToTimestamp(updatedAt)
         )
     }
 
@@ -99,8 +98,8 @@ data class OrderEntity(
                 orderStatus = order.orderStatus,
                 trackingNumber = order.trackingNumber,
                 statusHistoryJson = gson.toJson(order.statusHistory),
-                createdAt = order.createdAt.seconds * 1000 + order.createdAt.nanoseconds / 1000000,
-                updatedAt = order.updatedAt.seconds * 1000 + order.updatedAt.nanoseconds / 1000000
+                createdAt = EntityConverters.timestampToLong(order.createdAt),
+                updatedAt = EntityConverters.timestampToLong(order.updatedAt)
             )
         }
     }

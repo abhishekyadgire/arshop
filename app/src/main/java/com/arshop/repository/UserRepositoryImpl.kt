@@ -29,6 +29,8 @@ class UserRepositoryImpl @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : UserRepository {
 
+    private val gson = Gson()
+
     override fun getUserProfile(userId: String): Flow<Result<User>> = flow {
         try {
             emit(Result.Loading)
@@ -183,7 +185,6 @@ class UserRepositoryImpl @Inject constructor(
                 .await()
 
             // Update cache
-            val gson = Gson()
             userDao.updateAddresses(userId, gson.toJson(addresses), System.currentTimeMillis())
 
             emit(Result.Success(Unit))
@@ -241,7 +242,6 @@ class UserRepositoryImpl @Inject constructor(
                 .await()
 
             // Update cache
-            val gson = Gson()
             userDao.updateAddresses(userId, gson.toJson(addresses), System.currentTimeMillis())
 
             emit(Result.Success(Unit))

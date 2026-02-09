@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.arshop.data.model.Address
 import com.arshop.data.model.User
-import com.google.firebase.Timestamp
 import com.google.gson.Gson
 
 /**
@@ -43,8 +42,8 @@ data class UserEntity(
             photoUrl = photoUrl,
             phoneNumber = phoneNumber,
             addresses = addresses,
-            createdAt = Timestamp(createdAt / 1000, ((createdAt % 1000) * 1000000).toInt()),
-            updatedAt = Timestamp(updatedAt / 1000, ((updatedAt % 1000) * 1000000).toInt())
+            createdAt = EntityConverters.longToTimestamp(createdAt),
+            updatedAt = EntityConverters.longToTimestamp(updatedAt)
         )
     }
 
@@ -62,8 +61,8 @@ data class UserEntity(
                 photoUrl = user.photoUrl,
                 phoneNumber = user.phoneNumber,
                 addressesJson = gson.toJson(user.addresses),
-                createdAt = user.createdAt.seconds * 1000 + user.createdAt.nanoseconds / 1000000,
-                updatedAt = user.updatedAt.seconds * 1000 + user.updatedAt.nanoseconds / 1000000
+                createdAt = EntityConverters.timestampToLong(user.createdAt),
+                updatedAt = EntityConverters.timestampToLong(user.updatedAt)
             )
         }
     }

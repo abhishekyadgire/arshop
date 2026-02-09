@@ -60,8 +60,8 @@ class CartRepositoryImpl @Inject constructor(
                         }
                     } ?: emptyList()
 
-                    // Cache locally
-                    kotlinx.coroutines.runBlocking {
+                    // Cache locally using launch
+                    kotlinx.coroutines.CoroutineScope(ioDispatcher).launch {
                         val entities = cartItems.map { CartItemEntity.fromCartItem(it) }
                         cartDao.insertCartItems(entities)
                     }

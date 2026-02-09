@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -36,13 +37,12 @@ class ProductRepositoryImpl @Inject constructor(
         try {
             emit(Result.Loading)
 
-            // First, emit cached data
-            productDao.getAllProducts().map { entities ->
-                entities.map { it.toProduct() }
-            }.collect { cachedProducts ->
-                if (cachedProducts.isNotEmpty()) {
-                    emit(Result.Success(cachedProducts))
-                }
+            // First, emit cached data if available
+            val cachedProducts = productDao.getAllProducts().firstOrNull()
+                ?.map { it.toProduct() } ?: emptyList()
+            
+            if (cachedProducts.isNotEmpty()) {
+                emit(Result.Success(cachedProducts))
             }
 
             // Then fetch from Firestore
@@ -148,19 +148,18 @@ class ProductRepositoryImpl @Inject constructor(
                 .get()
                 .await()
 
-            val products = snapshot.documents.mapNotNull { Product.fromFirestore(it) }
+            val firestoreProducts = snapshot.documents.mapNotNull { Product.fromFirestore(it) }
 
             // Also search in cache
-            productDao.searchProducts(query).map { entities ->
-                entities.map { it.toProduct() }
-            }.collect { cachedProducts ->
-                // Combine results (remove duplicates)
-                val allProducts = (products + cachedProducts)
-                    .distinctBy { it.id }
-                    .filter { it.name.contains(query, ignoreCase = true) }
+            val cachedProducts = productDao.searchProducts(query).firstOrNull()
+                ?.map { it.toProduct() } ?: emptyList()
+            
+            // Combine results (remove duplicates)
+            val allProducts = (firestoreProducts + cachedProducts)
+                .distinctBy { it.id }
+                .filter { it.name.contains(query, ignoreCase = true) }
 
-                emit(Result.Success(allProducts))
-            }
+            emit(Result.Success(allProducts))
         } catch (e: Exception) {
             emit(Result.Failure(Exception("Failed to search products: ${e.message}")))
         }
