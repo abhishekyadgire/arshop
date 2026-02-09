@@ -306,4 +306,47 @@ class AdminProductViewModel @Inject constructor(
     fun clearError() {
         _error.value = null
     }
+    
+    // Add missing methods for admin screens
+    
+    private val _products = MutableStateFlow<List<Product>>(emptyList())
+    val products: StateFlow<List<Product>> = _products.asStateFlow()
+    
+    /**
+     * Loads all products from repository.
+     */
+    fun loadProducts() {
+        viewModelScope.launch {
+            _loading.value = true
+            _error.value = null
+            
+            // TODO: Use ProductRepository or AdminRepository to get all products
+            // For now, set empty list
+            _products.value = emptyList()
+            _loading.value = false
+        }
+    }
+    
+    /**
+     * Loads a single product by ID.
+     */
+    fun loadProductById(productId: String) {
+        viewModelScope.launch {
+            _loading.value = true
+            _error.value = null
+            
+            // TODO: Load product from repository
+            // For now, create a placeholder
+            _loading.value = false
+        }
+    }
+    
+    /**
+     * Uploads multiple images at once.
+     */
+    fun uploadImages(uris: List<Uri>) {
+        uris.forEach { uri ->
+            uploadImage(uri)
+        }
+    }
 }
