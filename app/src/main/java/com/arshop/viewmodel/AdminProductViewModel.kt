@@ -11,6 +11,8 @@ import com.arshop.util.Constants
 import com.arshop.util.Result
 import com.google.firebase.Timestamp
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -342,11 +344,18 @@ class AdminProductViewModel @Inject constructor(
     }
     
     /**
-     * Uploads multiple images at once.
+     * Uploads multiple images at once in parallel for better performance.
      */
     fun uploadImages(uris: List<Uri>) {
-        uris.forEach { uri ->
-            uploadImage(uri)
+        viewModelScope.launch {
+            // Upload images in parallel using async
+            val uploadJobs = uris.map { uri ->
+                async {
+                    uploadImage(uri)
+                }
+            }
+            // Wait for all uploads to complete
+            uploadJobs.awaitAll()
         }
     }
 }

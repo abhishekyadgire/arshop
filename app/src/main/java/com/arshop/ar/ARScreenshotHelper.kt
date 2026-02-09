@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -89,10 +90,13 @@ class ARScreenshotHelper(private val context: Context) {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outputStream)
             }
             
-            // Notify gallery of new image
-            val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-            intent.data = Uri.fromFile(imageFile)
-            context.sendBroadcast(intent)
+            // Notify gallery of new image using MediaScannerConnection
+            MediaScannerConnection.scanFile(
+                context,
+                arrayOf(imageFile.absolutePath),
+                arrayOf("image/jpeg"),
+                null
+            )
             
             Uri.fromFile(imageFile)
         } catch (e: Exception) {
