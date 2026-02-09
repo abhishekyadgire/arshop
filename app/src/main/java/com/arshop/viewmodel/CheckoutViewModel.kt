@@ -50,7 +50,8 @@ class CheckoutViewModel @Inject constructor(
     /**
      * Loads checkout data including cart, addresses, and payment methods.
      */
-    fun loadCheckoutData(userId: String) {
+    fun loadCheckoutData() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             _checkoutState.value = _checkoutState.value.copy(loading = true)
             
@@ -144,7 +145,8 @@ class CheckoutViewModel @Inject constructor(
     /**
      * Places the order.
      */
-    fun placeOrder(userId: String) {
+    fun placeOrder() {
+        val userId = auth.currentUser?.uid ?: return
         val state = _checkoutState.value
         
         if (!state.hasAllRequiredInfo()) {

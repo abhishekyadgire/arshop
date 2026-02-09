@@ -13,8 +13,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.arshop.data.model.PaymentMethod
 import com.arshop.ui.components.*
 import com.arshop.ui.navigation.NavigationActions
+import com.arshop.ui.state.CheckoutStep
 import com.arshop.ui.theme.ARShopTheme
 import com.arshop.viewmodel.CheckoutViewModel
 
@@ -59,13 +61,16 @@ fun CheckoutScreen(
         }
     }
     
+    // Convert CheckoutStep to int for step indicator
+    val currentStepInt = checkoutState.currentStep.ordinal
+    
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Checkout") },
                 navigationIcon = {
                     IconButton(onClick = { 
-                        if (checkoutState.currentStep > 0) {
+                        if (checkoutState.canGoBack()) {
                             viewModel.previousStep()
                         } else {
                             navigationActions.navigateBack()
@@ -89,22 +94,18 @@ fun CheckoutScreen(
                     Button(
                         onClick = {
                             when (checkoutState.currentStep) {
-                                0 -> viewModel.nextStep()
-                                1 -> viewModel.nextStep()
-                                2 -> viewModel.placeOrder()
+                                CheckoutStep.ADDRESS -> viewModel.nextStep()
+                                CheckoutStep.PAYMENT -> viewModel.nextStep()
+                                CheckoutStep.CONFIRMATION -> viewModel.placeOrder()
+                                else -> {}
                             }
                         },
-                        enabled = when (checkoutState.currentStep) {
-                            0 -> checkoutState.selectedAddressId != null
-                            1 -> checkoutState.selectedPaymentMethodId != null
-                            2 -> true
-                            else -> false
-                        } && !checkoutState.isLoading,
+                        enabled = checkoutState.canProceed(),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(56.dp)
                     ) {
-                        if (checkoutState.isLoading) {
+                        if (checkoutState.loading) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(24.dp),
                                 color = MaterialTheme.colorScheme.onPrimary
@@ -112,9 +113,9 @@ fun CheckoutScreen(
                         } else {
                             Text(
                                 text = when (checkoutState.currentStep) {
-                                    0 -> "Continue to Payment"
-                                    1 -> "Review Order"
-                                    2 -> "Place Order"
+                                    CheckoutStep.ADDRESS -> "Continue to Payment"
+                                    CheckoutStep.PAYMENT -> "Review Order"
+                                    CheckoutStep.CONFIRMATION -> "Place Order"
                                     else -> "Continue"
                                 },
                                 style = MaterialTheme.typography.titleMedium
@@ -135,7 +136,7 @@ fun CheckoutScreen(
             // Step Indicator
             item {
                 CheckoutStepIndicator(
-                    currentStep = checkoutState.currentStep,
+                    currentStep = currentStepInt,
                     steps = listOf("Address", "Payment", "Review")
                 )
             }
@@ -160,7 +161,7 @@ fun CheckoutScreen(
             
             // Step Content
             when (checkoutState.currentStep) {
-                0 -> {
+                CheckoutStep.ADDRESS -> {
                     // Address Step
                     item {
                         Text(
@@ -195,8 +196,8 @@ fun CheckoutScreen(
                         items(addresses) { address ->
                             AddressCard(
                                 address = address,
-                                isSelected = checkoutState.selectedAddressId == address.id,
-                                onSelect = { viewModel.selectAddress(address.id) }
+                                isSelected = checkoutState.selectedAddress?.id == address.id,
+                                onSelect = { viewModel.selectAddress(address) }
                             )
                         }
                         
@@ -216,7 +217,7 @@ fun CheckoutScreen(
                     }
                 }
                 
-                1 -> {
+                CheckoutStep.PAYMENT -> {
                     // Payment Step
                     item {
                         Text(
@@ -227,14 +228,42 @@ fun CheckoutScreen(
                     }
                     
                     item {
-                        PaymentMethodSelector(
-                            selectedMethod = checkoutState.selectedPaymentMethodId,
-                            onMethodSelected = { viewModel.selectPayment(it) }
-                        )
+                        // For now, provide simple payment method selection
+                        Column(
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            listOf("Stripe", "PayPal", "Razorpay", "Google Pay").forEach { method ->
+                                val paymentMethod = PaymentMethod.createForType(method.lowercase())
+                                Card(
+                                    onClick = { viewModel.selectPayment(paymentMethod) },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    colors = CardDefaults.cardColors(
+                                        containerColor = if (checkoutState.selectedPayment?.type?.name?.lowercase() == method.lowercase())
+                                            MaterialTheme.colorScheme.primaryContainer
+                                        else
+                                            MaterialTheme.colorScheme.surface
+                                    )
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(16.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        RadioButton(
+                                            selected = checkoutState.selectedPayment?.type?.name?.lowercase() == method.lowercase(),
+                                            onClick = { viewModel.selectPayment(paymentMethod) }
+                                        )
+                                        Spacer(modifier = Modifier.width(16.dp))
+                                        Text(method)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 
-                2 -> {
+                CheckoutStep.CONFIRMATION -> {
                     // Review Step
                     item {
                         Text(
@@ -251,8 +280,7 @@ fun CheckoutScreen(
                     
                     // Shipping Address
                     item {
-                        val selectedAddress = addresses.find { it.id == checkoutState.selectedAddressId }
-                        selectedAddress?.let { address ->
+                        checkoutState.selectedAddress?.let { address ->
                             Card(
                                 modifier = Modifier.fillMaxWidth()
                             ) {
@@ -277,13 +305,15 @@ fun CheckoutScreen(
                     // Order Summary
                     item {
                         OrderSummaryCard(
-                            subtotal = checkoutState.subtotal,
-                            shipping = checkoutState.shipping,
-                            tax = checkoutState.tax,
-                            total = checkoutState.total
+                            subtotal = checkoutState.cartTotal,
+                            shipping = 0.0, // TODO: Calculate shipping
+                            tax = 0.0, // TODO: Calculate tax
+                            total = checkoutState.cartTotal
                         )
                     }
                 }
+                
+                else -> {}
             }
             
             // Add bottom spacing

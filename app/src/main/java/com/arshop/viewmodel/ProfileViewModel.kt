@@ -42,7 +42,8 @@ class ProfileViewModel @Inject constructor(
     /**
      * Loads user profile.
      */
-    fun loadProfile(userId: String) {
+    fun loadProfile() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             _loading.value = true
             _error.value = null

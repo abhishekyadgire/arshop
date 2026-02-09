@@ -145,7 +145,8 @@ class ProductDetailViewModel @Inject constructor(
     /**
      * Adds product to cart with selected options.
      */
-    fun addToCart(userId: String) {
+    fun addToCart() {
+        val userId = auth.currentUser?.uid ?: return
         val currentProduct = _product.value
         val size = _selectedSize.value
         val color = _selectedColor.value

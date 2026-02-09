@@ -50,7 +50,8 @@ class CartViewModel @Inject constructor(
     /**
      * Loads cart items for the current user.
      */
-    fun loadCart(userId: String) {
+    fun loadCart() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             _loading.value = true
             _error.value = null

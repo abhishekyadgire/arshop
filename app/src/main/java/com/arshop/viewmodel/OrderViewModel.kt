@@ -41,7 +41,8 @@ class OrderViewModel @Inject constructor(
     /**
      * Loads user's order history.
      */
-    fun loadOrders(userId: String) {
+    fun loadOrders() {
+        val userId = auth.currentUser?.uid ?: return
         viewModelScope.launch {
             _loading.value = true
             _error.value = null
@@ -145,7 +146,9 @@ class OrderViewModel @Inject constructor(
     /**
      * Reorders items from a previous order.
      */
-    fun reorder(userId: String, order: Order) {
+    fun reorder(orderId: String) {
+        val userId = auth.currentUser?.uid ?: return
+        val order = _selectedOrder.value ?: return
         viewModelScope.launch {
             _loading.value = true
             _error.value = null

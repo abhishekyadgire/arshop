@@ -110,5 +110,21 @@ data class PaymentMethod(
                 isDefault = true
             )
         }
+        
+        fun createForType(typeString: String): PaymentMethod {
+            val type = when (typeString.lowercase()) {
+                "stripe" -> PaymentMethodType.STRIPE
+                "paypal" -> PaymentMethodType.PAYPAL
+                "razorpay" -> PaymentMethodType.RAZORPAY
+                "google_pay", "googlepay" -> PaymentMethodType.GOOGLE_PAY
+                else -> PaymentMethodType.STRIPE
+            }
+            return PaymentMethod(
+                id = typeString.lowercase(),
+                type = type,
+                displayName = type.getDisplayName(),
+                isDefault = false
+            )
+        }
     }
 }
