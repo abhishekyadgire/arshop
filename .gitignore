@@ -23,32 +23,70 @@
 hs_err_pid*
 replay_pid*
 
-# Firebase
+# Firebase Configuration
 google-services.json
+
+# API Keys and Secrets
+local.properties
+keystore.properties
+*.jks
+*.keystore
 
 # Android Studio
 .idea/
 .gradle/
-local.properties
 *.iml
 .DS_Store
 
-# Build
+# Build Artifacts
 build/
 *.apk
 *.aab
+*.ap_
+*.dex
 app/release/
 app/debug/
 
-# Sensitive
-keystore.properties
-*.jks
-*.keystore
+# Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# NDK
+obj/
+.externalNativeBuild
+.cxx
 
 # Generated files
 bin/
 gen/
 out/
 captures/
-.externalNativeBuild
-.cxx
+
+# Local configuration
+local.properties
+gradle.properties
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Large model files (optional - uncomment if models are large)
+# *.glb
+# *.gltf
+# app/src/main/assets/models/*.glb
+
+# Debug databases
+*.db
+*.db-shm
+*.db-wal

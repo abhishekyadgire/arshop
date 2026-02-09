@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name and Titles -->
     <string name="app_name">ARShop</string>
+    <string name="app_tagline">Shop with Augmented Reality</string>
+    
+    <!-- Screen Titles -->
+    <string name="title_login">Sign In</string>
+    <string name="title_signup">Create Account</string>
+    <string name="title_home">Home</string>
+    <string name="title_browse">Browse Products</string>
+    <string name="title_product_details">Product Details</string>
+    <string name="title_ar_view">AR Try-On</string>
+    <string name="title_cart">Shopping Cart</string>
+    <string name="title_checkout">Checkout</string>
+    <string name="title_orders">My Orders</string>
+    <string name="title_order_details">Order Details</string>
+    <string name="title_profile">My Profile</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_admin">Admin Panel</string>
+    <string name="title_manage_products">Manage Products</string>
+    <string name="title_manage_orders">Manage Orders</string>
+    <string name="title_analytics">Analytics</string>
+    <string name="title_add_product">Add Product</string>
+    <string name="title_edit_product">Edit Product</string>
 
     <!-- Authentication -->
     <string name="welcome_back">Welcome Back</string>
+    <string name="create_account">Create Account</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="join_arshop">Join ARShop</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="display_name">Display Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign Out</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_reset_link">Send Reset Link</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_as_guest">Continue as Guest</string>
     <string name="already_have_account">Already have an account? Sign In</string>
     <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="agree_to_terms">By signing up, you agree to our Terms and Privacy Policy</string>
 
     <!-- Navigation -->
     <string name="home">Home</string>
@@ -24,52 +55,258 @@
     <string name="ar_try">AR Try</string>
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
+    <string name="orders">Orders</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="admin">Admin</string>
 
     <!-- Product -->
     <string name="add_to_cart">Add to Cart</string>
+    <string name="added_to_cart">Added to Cart</string>
     <string name="buy_now">Buy Now</string>
     <string name="launch_ar_try_on">Launch AR Try-On</string>
     <string name="try_before_you_buy">Try Before You Buy</string>
     <string name="see_how_this_looks_on_you">See how this looks on you with AR</string>
     <string name="in_stock">In stock</string>
     <string name="out_of_stock">Out of Stock</string>
+    <string name="low_stock">Low Stock</string>
     <string name="items_left">%d items left</string>
+    <string name="item_left">%d item left</string>
+    <string name="price">Price</string>
+    <string name="description">Description</string>
+    <string name="specifications">Specifications</string>
+    <string name="reviews">Reviews</string>
+    <string name="rating">Rating</string>
+    <string name="write_review">Write a Review</string>
+    <string name="size">Size</string>
+    <string name="color">Color</string>
+    <string name="quantity">Quantity</string>
+    <string name="select_size">Select Size</string>
+    <string name="select_color">Select Color</string>
+    <string name="select_quantity">Select Quantity</string>
+    <string name="category">Category</string>
+    <string name="brand">Brand</string>
+    <string name="material">Material</string>
+    <string name="features">Features</string>
+    <string name="ar_enabled">AR Enabled</string>
+    <string name="product_image">Product Image</string>
+
+    <!-- Categories -->
+    <string name="all_categories">All Categories</string>
+    <string name="shoes">Shoes</string>
+    <string name="clothing">Clothing</string>
+    <string name="accessories">Accessories</string>
+    <string name="furniture">Furniture</string>
+    <string name="electronics">Electronics</string>
+    <string name="home_decor">Home Decor</string>
 
     <!-- Cart -->
     <string name="shopping_cart">Shopping Cart</string>
     <string name="your_cart_is_empty">Your cart is empty</string>
+    <string name="start_shopping">Start Shopping</string>
     <string name="browse_products">Browse Products</string>
     <string name="proceed_to_checkout">Proceed to Checkout</string>
     <string name="subtotal">Subtotal</string>
     <string name="shipping">Shipping</string>
     <string name="tax">Tax</string>
+    <string name="discount">Discount</string>
     <string name="total">Total</string>
     <string name="free_shipping">FREE</string>
+    <string name="update_cart">Update Cart</string>
+    <string name="remove_from_cart">Remove from Cart</string>
+    <string name="items_in_cart">%d items</string>
+    <string name="item_in_cart">%d item</string>
+    <string name="apply_coupon">Apply Coupon</string>
+    <string name="coupon_code">Coupon Code</string>
+    <string name="coupon_applied">Coupon Applied</string>
 
     <!-- Checkout -->
     <string name="checkout">Checkout</string>
     <string name="place_order">Place Order</string>
     <string name="shipping_address">Shipping Address</string>
+    <string name="billing_address">Billing Address</string>
     <string name="payment_method">Payment Method</string>
     <string name="order_summary">Order Summary</string>
     <string name="review_order">Review Order</string>
+    <string name="add_address">Add Address</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="use_this_address">Use This Address</string>
+    <string name="same_as_shipping">Same as Shipping Address</string>
+    
+    <!-- Address Fields -->
+    <string name="street_address">Street Address</string>
+    <string name="apartment_suite">Apartment, Suite, etc. (optional)</string>
+    <string name="city">City</string>
+    <string name="state">State / Province</string>
+    <string name="zip_code">ZIP / Postal Code</string>
+    <string name="country">Country</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="landmark">Landmark (optional)</string>
 
-    <!-- AR -->
+    <!-- Payment -->
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="debit_card">Debit Card</string>
+    <string name="upi">UPI</string>
+    <string name="net_banking">Net Banking</string>
+    <string name="cash_on_delivery">Cash on Delivery</string>
+    <string name="wallet">Wallet</string>
+    <string name="stripe">Stripe</string>
+    <string name="paypal">PayPal</string>
+    <string name="razorpay">Razorpay</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="cvv">CVV</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="processing_payment">Processing Payment...</string>
+    <string name="payment_successful">Payment Successful</string>
+    <string name="payment_failed">Payment Failed</string>
+
+    <!-- Orders -->
+    <string name="my_orders">My Orders</string>
+    <string name="order_placed">Order Placed</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="order_shipped">Order Shipped</string>
+    <string name="order_delivered">Order Delivered</string>
+    <string name="order_cancelled">Order Cancelled</string>
+    <string name="order_number">Order #%s</string>
+    <string name="order_date">Order Date</string>
+    <string name="delivery_date">Delivery Date</string>
+    <string name="expected_delivery">Expected Delivery</string>
+    <string name="track_order">Track Order</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="return_order">Return Order</string>
+    <string name="no_orders_yet">No orders yet</string>
+    <string name="order_details">Order Details</string>
+    <string name="view_invoice">View Invoice</string>
+    <string name="download_invoice">Download Invoice</string>
+    <string name="reorder">Reorder</string>
+
+    <!-- AR Instructions and Guidance -->
+    <string name="ar_initializing">Initializing AR...</string>
+    <string name="ar_ready">AR Ready</string>
+    <string name="ar_session_paused">AR Session Paused</string>
+    <string name="ar_session_resumed">AR Session Resumed</string>
     <string name="point_camera_at_body">Point camera at your body</string>
     <string name="find_a_flat_surface">Find a flat surface</string>
     <string name="point_camera_at_feet">Point camera at your feet</string>
+    <string name="move_device_slowly">Move your device slowly</string>
+    <string name="tap_to_place">Tap to place object</string>
+    <string name="pinch_to_resize">Pinch to resize</string>
+    <string name="rotate_with_two_fingers">Rotate with two fingers</string>
     <string name="floor_view">Floor View</string>
     <string name="foot_view">Foot View</string>
+    <string name="body_view">Body View</string>
     <string name="take_screenshot">Take Screenshot</string>
+    <string name="screenshot_saved">Screenshot Saved</string>
     <string name="share">Share</string>
+    <string name="close_ar">Close AR</string>
+    <string name="ar_not_supported">AR not supported on this device</string>
+    <string name="arcore_not_installed">ARCore is not installed</string>
+    <string name="install_arcore">Install ARCore</string>
+    <string name="camera_permission_required">Camera permission is required for AR</string>
 
-    <!-- Admin -->
+    <!-- Admin Panel -->
     <string name="admin_panel">Admin Panel</string>
     <string name="manage_products">Manage Products</string>
     <string name="manage_orders">Manage Orders</string>
+    <string name="manage_users">Manage Users</string>
+    <string name="view_analytics">View Analytics</string>
     <string name="add_product">Add Product</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_description">Product Description</string>
+    <string name="product_price">Product Price</string>
+    <string name="product_category">Product Category</string>
+    <string name="product_stock">Stock Quantity</string>
+    <string name="product_images">Product Images</string>
+    <string name="upload_images">Upload Images</string>
+    <string name="upload_3d_model">Upload 3D Model</string>
+    <string name="model_file">3D Model File (.glb, .gltf)</string>
+    <string name="enable_ar">Enable AR</string>
+    <string name="publish_product">Publish Product</string>
+    <string name="save_draft">Save as Draft</string>
+    <string name="total_products">Total Products</string>
+    <string name="total_orders">Total Orders</string>
+    <string name="total_revenue">Total Revenue</string>
+    <string name="pending_orders">Pending Orders</string>
+    <string name="update_order_status">Update Order Status</string>
 
-    <!-- Common -->
+    <!-- Error Messages -->
+    <string name="error_generic">Something went wrong</string>
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_timeout">Request timeout. Please try again.</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_server">Server error. Please try again later.</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_invalid_password">Password must be at least 6 characters</string>
+    <string name="error_passwords_dont_match">Passwords don\'t match</string>
+    <string name="error_empty_field">This field is required</string>
+    <string name="error_empty_name">Please enter your name</string>
+    <string name="error_empty_email">Please enter your email</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_login_failed">Login failed. Please check your credentials.</string>
+    <string name="error_signup_failed">Sign up failed. Please try again.</string>
+    <string name="error_email_already_exists">Email already exists</string>
+    <string name="error_user_not_found">User not found</string>
+    <string name="error_wrong_password">Incorrect password</string>
+    <string name="error_load_products">Failed to load products</string>
+    <string name="error_load_product_details">Failed to load product details</string>
+    <string name="error_add_to_cart">Failed to add item to cart</string>
+    <string name="error_update_cart">Failed to update cart</string>
+    <string name="error_remove_from_cart">Failed to remove item</string>
+    <string name="error_load_cart">Failed to load cart</string>
+    <string name="error_place_order">Failed to place order</string>
+    <string name="error_load_orders">Failed to load orders</string>
+    <string name="error_cancel_order">Failed to cancel order</string>
+    <string name="error_invalid_address">Please enter a valid address</string>
+    <string name="error_payment_failed">Payment failed. Please try again.</string>
+    <string name="error_ar_initialization">Failed to initialize AR</string>
+    <string name="error_ar_model_load">Failed to load 3D model</string>
+    <string name="error_camera_permission">Camera permission denied</string>
+    <string name="error_storage_permission">Storage permission denied</string>
+    <string name="error_upload_failed">Upload failed</string>
+    <string name="error_delete_failed">Delete failed</string>
+
+    <!-- Success Messages -->
+    <string name="success_login">Successfully logged in</string>
+    <string name="success_signup">Account created successfully</string>
+    <string name="success_logout">Successfully logged out</string>
+    <string name="success_password_reset">Password reset link sent to your email</string>
+    <string name="success_added_to_cart">Added to cart</string>
+    <string name="success_updated_cart">Cart updated</string>
+    <string name="success_removed_from_cart">Removed from cart</string>
+    <string name="success_order_placed">Order placed successfully</string>
+    <string name="success_order_cancelled">Order cancelled</string>
+    <string name="success_product_added">Product added successfully</string>
+    <string name="success_product_updated">Product updated successfully</string>
+    <string name="success_product_deleted">Product deleted</string>
+    <string name="success_profile_updated">Profile updated</string>
+    <string name="success_address_saved">Address saved</string>
+
+    <!-- Confirmation Dialogs -->
+    <string name="confirm_sign_out">Are you sure you want to sign out?</string>
+    <string name="confirm_remove_from_cart">Remove this item from cart?</string>
+    <string name="confirm_cancel_order">Are you sure you want to cancel this order?</string>
+    <string name="confirm_delete_product">Delete this product? This action cannot be undone.</string>
+    <string name="confirm_delete_address">Delete this address?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="got_it">Got it</string>
+
+    <!-- Empty States -->
+    <string name="empty_products">No products found</string>
+    <string name="empty_search">No results found</string>
+    <string name="empty_cart">Your cart is empty</string>
+    <string name="empty_orders">You haven\'t placed any orders yet</string>
+    <string name="empty_favorites">No favorites yet</string>
+    <string name="empty_notifications">No notifications</string>
+
+    <!-- Common Actions -->
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
     <string name="retry">Retry</string>
@@ -77,8 +314,81 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="update">Update</string>
     <string name="search">Search</string>
     <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
     <string name="clear_filters">Clear Filters</string>
     <string name="apply">Apply</string>
+    <string name="done">Done</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="submit">Submit</string>
+    <string name="confirm">Confirm</string>
+    <string name="continue_action">Continue</string>
+    <string name="skip">Skip</string>
+    <string name="close">Close</string>
+    <string name="refresh">Refresh</string>
+    <string name="view_all">View All</string>
+    <string name="see_more">See More</string>
+    <string name="see_less">See Less</string>
+
+    <!-- Sort Options -->
+    <string name="sort_by">Sort by</string>
+    <string name="sort_price_low_high">Price: Low to High</string>
+    <string name="sort_price_high_low">Price: High to Low</string>
+    <string name="sort_newest">Newest First</string>
+    <string name="sort_popular">Most Popular</string>
+    <string name="sort_rating">Highest Rated</string>
+
+    <!-- Filter Options -->
+    <string name="filter_price_range">Price Range</string>
+    <string name="filter_category">Category</string>
+    <string name="filter_brand">Brand</string>
+    <string name="filter_size">Size</string>
+    <string name="filter_color">Color</string>
+    <string name="filter_availability">Availability</string>
+    <string name="filter_ar_enabled">AR Enabled Only</string>
+
+    <!-- Settings -->
+    <string name="account_settings">Account Settings</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="language">Language</string>
+    <string name="currency">Currency</string>
+    <string name="theme">Theme</string>
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
+    <string name="system_default">System Default</string>
+    <string name="about">About</string>
+    <string name="version">Version</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="rate_app">Rate App</string>
+    <string name="share_app">Share App</string>
+
+    <!-- Accessibility -->
+    <string name="content_description_product_image">Product image</string>
+    <string name="content_description_user_avatar">User profile picture</string>
+    <string name="content_description_ar_badge">AR enabled badge</string>
+    <string name="content_description_cart_icon">Shopping cart</string>
+    <string name="content_description_favorite">Add to favorites</string>
+    <string name="content_description_remove_favorite">Remove from favorites</string>
+    <string name="content_description_increase_quantity">Increase quantity</string>
+    <string name="content_description_decrease_quantity">Decrease quantity</string>
+    <string name="content_description_delete_item">Delete item</string>
+    <string name="content_description_back">Go back</string>
+    <string name="content_description_close">Close</string>
+    <string name="content_description_menu">Menu</string>
+    <string name="content_description_search">Search</string>
+    <string name="content_description_filter">Filter</string>
+
+    <!-- Misc -->
+    <string name="featured_products">Featured Products</string>
+    <string name="recommended_for_you">Recommended for You</string>
+    <string name="new_arrivals">New Arrivals</string>
+    <string name="best_sellers">Best Sellers</string>
+    <string name="on_sale">On Sale</string>
+    <string name="free_shipping_on_orders">Free shipping on orders over %s</string>
+    <string name="estimated_delivery">Estimated Delivery: %s</string>
+    <string name="powered_by_ar">Powered by ARCore</string>
 </resources>

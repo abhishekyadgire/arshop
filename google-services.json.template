@@ -1,0 +1,168 @@
+{
+  "project_info": {
+    "project_number": "123456789000",
+    "firebase_url": "https://YOUR_PROJECT_ID.firebaseio.com",
+    "project_id": "YOUR_PROJECT_ID",
+    "storage_bucket": "YOUR_PROJECT_ID.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123456789000:android:abcdef1234567890",
+        "android_client_info": {
+          "package_name": "com.arshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123456789000-abcdefghijklmnopqrstuvwxyz123456.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123456789000-abcdefghijklmnopqrstuvwxyz123456.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
+<!--
+================================================================================
+FIREBASE CONFIGURATION TEMPLATE
+================================================================================
+
+INSTRUCTIONS:
+1. Go to Firebase Console: https://console.firebase.google.com/
+2. Select your project (or create a new one)
+3. Click on Project Settings (gear icon)
+4. Scroll down to "Your apps" section
+5. Click on "Add app" and select Android
+6. Enter package name: com.arshop
+7. Download the google-services.json file
+8. Replace this template file with the downloaded file
+9. Place it at: app/google-services.json
+
+IMPORTANT:
+- This is a TEMPLATE with placeholder values
+- Replace ALL values with your actual Firebase configuration
+- NEVER commit the real google-services.json to public repositories
+- The file is already added to .gitignore for security
+
+FIREBASE SERVICES TO ENABLE:
+1. Authentication
+   - Enable Email/Password authentication
+   - Enable Google Sign-In
+   - Configure OAuth consent screen
+
+2. Firestore Database
+   - Create database in production mode
+   - Set up security rules (see Firebase documentation)
+   - Create indexes as needed
+
+3. Cloud Storage
+   - Enable Storage
+   - Set up security rules for product images
+   - Configure CORS if needed
+
+4. Cloud Functions (Optional)
+   - For order processing
+   - For payment webhooks
+   - For notifications
+
+5. Cloud Messaging (Optional)
+   - For push notifications
+   - For order updates
+
+SECURITY RULES EXAMPLES:
+
+Firestore Rules (firestore.rules):
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /products/{product} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /orders/{order} {
+      allow read: if request.auth != null && 
+                  (resource.data.userId == request.auth.uid || 
+                   request.auth.token.admin == true);
+      allow create: if request.auth != null;
+    }
+  }
+}
+```
+
+Storage Rules (storage.rules):
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /products/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+
+PACKAGE NAME:
+- Make sure to use: com.arshop
+- This must match the package name in your build.gradle
+
+SHA-1 FINGERPRINT (for Google Sign-In):
+Get your SHA-1 fingerprint by running:
+```
+./gradlew signingReport
+```
+
+Then add it to Firebase Console:
+Project Settings > Your apps > Add fingerprint
+
+TESTING:
+- Use Firebase Emulator Suite for local development
+- Test authentication flows
+- Verify Firestore read/write permissions
+- Test image uploads to Storage
+
+TROUBLESHOOTING:
+- If you get "Default FirebaseApp is not initialized" error:
+  Make sure google-services.json is in the correct location (app/)
+  
+- If Google Sign-In fails:
+  Verify SHA-1 fingerprint is added to Firebase Console
+  Check OAuth consent screen is configured
+  
+- If you can't read/write to Firestore:
+  Check security rules
+  Verify user is authenticated
+
+RESOURCES:
+- Firebase Console: https://console.firebase.google.com/
+- Firebase Android Setup: https://firebase.google.com/docs/android/setup
+- Firebase Auth: https://firebase.google.com/docs/auth
+- Firestore: https://firebase.google.com/docs/firestore
+- Cloud Storage: https://firebase.google.com/docs/storage
+
+================================================================================
+-->
