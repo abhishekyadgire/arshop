@@ -118,6 +118,9 @@ dependencies {
     // Image Loading
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    // Accompanist (for SwipeRefresh)
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.32.0")
+
     // Payment SDKs
     implementation("com.stripe:stripe-android:20.37.0")
     implementation("com.paypal.checkout:android-sdk:1.2.0")

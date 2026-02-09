@@ -34,29 +34,28 @@ fun ARShopNavGraph(
     ) {
         // Authentication Flow
         composable(Destinations.Login.route) {
-            // LoginScreen(navigationActions)
-            // Placeholder - actual screen will be implemented later
+            com.arshop.ui.screens.auth.LoginScreen(navigationActions)
         }
         
         composable(Destinations.SignUp.route) {
-            // SignUpScreen(navigationActions)
+            com.arshop.ui.screens.auth.SignUpScreen(navigationActions)
         }
         
         composable(Destinations.ForgotPassword.route) {
-            // ForgotPasswordScreen(navigationActions)
+            com.arshop.ui.screens.auth.ForgotPasswordScreen(navigationActions)
         }
         
         // Main App Flow
         composable(Destinations.Home.route) {
-            // HomeScreen(navigationActions)
+            com.arshop.ui.screens.home.HomeScreen(navigationActions)
         }
         
         composable(Destinations.Browse.route) {
-            // BrowseScreen(navigationActions)
+            com.arshop.ui.screens.browse.BrowseScreen(navigationActions)
         }
         
         composable(Destinations.Search.route) {
-            // SearchScreen(navigationActions)
+            com.arshop.ui.screens.browse.SearchScreen(navigationActions)
         }
         
         // Product Detail with deep link support
@@ -74,20 +73,20 @@ fun ARShopNavGraph(
             )
         ) { backStackEntry ->
             val productId = backStackEntry.arguments?.getString(Destinations.ProductDetail.ARG_PRODUCT_ID)
-            // ProductDetailScreen(productId, navigationActions)
+            com.arshop.ui.screens.product.ProductDetailScreen(productId, navigationActions)
         }
         
         // Cart & Checkout Flow
         composable(Destinations.Cart.route) {
-            // CartScreen(navigationActions)
+            com.arshop.ui.screens.cart.CartScreen(navigationActions)
         }
         
         composable(Destinations.Checkout.route) {
-            // CheckoutScreen(navigationActions)
+            com.arshop.ui.screens.checkout.CheckoutScreen(navigationActions)
         }
         
         composable(Destinations.Payment.route) {
-            // PaymentScreen(navigationActions)
+            com.arshop.ui.screens.checkout.PaymentScreen(navigationActions)
         }
         
         composable(
@@ -99,16 +98,16 @@ fun ARShopNavGraph(
             )
         ) { backStackEntry ->
             val orderId = backStackEntry.arguments?.getString(Destinations.OrderConfirmation.ARG_ORDER_ID)
-            // OrderConfirmationScreen(orderId, navigationActions)
+            com.arshop.ui.screens.checkout.OrderConfirmationScreen(orderId, navigationActions)
         }
         
         // User Profile Flow
         composable(Destinations.Profile.route) {
-            // ProfileScreen(navigationActions)
+            com.arshop.ui.screens.profile.ProfileScreen(navigationActions)
         }
         
         composable(Destinations.OrderHistory.route) {
-            // OrderHistoryScreen(navigationActions)
+            com.arshop.ui.screens.profile.OrderHistoryScreen(navigationActions)
         }
         
         composable(
@@ -120,7 +119,7 @@ fun ARShopNavGraph(
             )
         ) { backStackEntry ->
             val orderId = backStackEntry.arguments?.getString(Destinations.OrderDetail.ARG_ORDER_ID)
-            // OrderDetailScreen(orderId, navigationActions)
+            com.arshop.ui.screens.profile.OrderDetailScreen(orderId, navigationActions)
         }
         
         // AR Features
