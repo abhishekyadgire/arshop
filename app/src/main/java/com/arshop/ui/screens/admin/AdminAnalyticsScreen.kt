@@ -208,7 +208,7 @@ fun AdminAnalyticsScreen(
                                     }
                                     
                                     Text(
-                                        text = "$count (${String.format("%.1f", count * 100.0 / totalOrders)}%)",
+                                        text = "$count (${if (totalOrders > 0) String.format("%.1f", count * 100.0 / totalOrders) else "0.0"}%)",
                                         style = MaterialTheme.typography.bodyMedium,
                                         fontWeight = FontWeight.Bold
                                     )

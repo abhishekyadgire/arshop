@@ -167,9 +167,11 @@ class ARModelLoader(
      * Gets cache size in bytes.
      */
     fun getCacheSize(): Long {
-        return File(context.cacheDir, "ar_models")
-            .listFiles()
-            ?.sumOf { it.length() } ?: 0L
+        val cachePath = File(context.cacheDir, "ar_models")
+        if (!cachePath.exists() || !cachePath.isDirectory) {
+            return 0L
+        }
+        return cachePath.listFiles()?.sumOf { it.length() } ?: 0L
     }
     
     /**

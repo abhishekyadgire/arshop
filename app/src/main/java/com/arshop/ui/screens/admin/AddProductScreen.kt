@@ -373,8 +373,10 @@ private fun validateForm(
     sizes: List<String>,
     colors: List<ProductColor>
 ): Boolean {
+    val priceValue = price.toDoubleOrNull()
     return name.isNotBlank() && 
-           price.toDoubleOrNull() != null && 
+           priceValue != null && 
+           priceValue > 0 && 
            sizes.isNotEmpty() && 
            colors.isNotEmpty()
 }

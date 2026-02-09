@@ -351,14 +351,28 @@ class AdminProductViewModel @Inject constructor(
      */
     fun uploadImages(uris: List<Uri>) {
         viewModelScope.launch {
-            // Upload images in parallel using async
-            val uploadJobs = uris.map { uri ->
-                async {
-                    uploadImage(uri)
+            try {
+                _imageUploading.value = true
+                _error.value = null
+                
+                // Upload images in parallel using async
+                val uploadJobs = uris.map { uri ->
+                    async {
+                        try {
+                            uploadImage(uri)
+                        } catch (e: Exception) {
+                            _error.value = "Failed to upload some images: ${e.message}"
+                        }
+                    }
                 }
+                // Wait for all uploads to complete
+                uploadJobs.awaitAll()
+                
+            } catch (e: Exception) {
+                _error.value = "Failed to upload images: ${e.message}"
+            } finally {
+                _imageUploading.value = false
             }
-            // Wait for all uploads to complete
-            uploadJobs.awaitAll()
         }
     }
 }

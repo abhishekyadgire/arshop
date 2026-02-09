@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.arshop.ar.FootTrackingHelper
+import com.arshop.ar.FootTrackingHelper.Companion.BASE_SHOE_SIZE
 import com.arshop.ar.FootTrackingMode
 import com.arshop.data.model.Product
 import com.arshop.viewmodel.ARViewModel
@@ -27,7 +27,7 @@ fun ARFootwearScreen(
     val footTrackingHelper = remember { FootTrackingHelper() }
     
     var trackingMode by remember { mutableStateOf(FootTrackingMode.FLOOR_PLACEMENT) }
-    var shoeSize by remember { mutableFloatStateOf(9.0f) }
+    var shoeSize by remember { mutableFloatStateOf(BASE_SHOE_SIZE) }
     var modelRotation by remember { mutableFloatStateOf(0f) }
     
     val floorDetected by footTrackingHelper.floorDetected.collectAsState()

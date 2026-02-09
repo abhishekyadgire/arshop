@@ -19,6 +19,11 @@ import kotlinx.coroutines.flow.asStateFlow
  */
 class FootTrackingHelper {
     
+    companion object {
+        const val BASE_SHOE_SIZE = 9.0f
+        const val SIZE_SCALE_FACTOR = 0.03f
+    }
+    
     private val _floorDetected = MutableStateFlow(false)
     val floorDetected: StateFlow<Boolean> = _floorDetected.asStateFlow()
     
@@ -172,11 +177,9 @@ class FootTrackingHelper {
      * Uses US shoe sizes as reference.
      */
     fun getScaleFactor(): Float {
-        // Base size 9 = scale 1.0
-        // Each size up/down adjusts by ~3%
-        val baseSize = 9.0f
-        val sizeDiff = _shoeSize.value - baseSize
-        return 1.0f + (sizeDiff * 0.03f)
+        // Each size up/down adjusts by SIZE_SCALE_FACTOR
+        val sizeDiff = _shoeSize.value - BASE_SHOE_SIZE
+        return 1.0f + (sizeDiff * SIZE_SCALE_FACTOR)
     }
     
     /**

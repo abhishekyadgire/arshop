@@ -51,10 +51,6 @@ class ARScreenshotHelper(private val context: Context) {
      * Saves bitmap to MediaStore (Android 10+).
      */
     private suspend fun saveToMediaStore(bitmap: Bitmap, filename: String): Uri? {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            return null
-        }
-        
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
