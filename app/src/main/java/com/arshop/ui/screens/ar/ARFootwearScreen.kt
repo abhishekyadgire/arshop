@@ -32,7 +32,6 @@ fun ARFootwearScreen(
     
     val floorDetected by footTrackingHelper.floorDetected.collectAsState()
     val footDetected by footTrackingHelper.footDetected.collectAsState()
-    val isPlacementReady by footTrackingHelper.isPlacementReady.collectAsState()
     
     LaunchedEffect(trackingMode) {
         footTrackingHelper.setTrackingMode(trackingMode)
@@ -223,7 +222,7 @@ fun ARFootwearScreen(
         }
         
         // Tap to place hint
-        if (floorDetected && !isPlacementReady) {
+        if (floorDetected && !footTrackingHelper.isPlacementReady()) {
             Card(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
