@@ -91,6 +91,8 @@ class ARScreenshotHelper(private val context: Context) {
             }
             
             // Notify gallery of new image using MediaScannerConnection
+            // Note: This approach is valid for API < 29 (Android 9 and below)
+            // For API 29+, MediaStore handles gallery updates automatically
             MediaScannerConnection.scanFile(
                 context,
                 arrayOf(imageFile.absolutePath),

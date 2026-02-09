@@ -344,7 +344,10 @@ class AdminProductViewModel @Inject constructor(
     }
     
     /**
-     * Uploads multiple images at once in parallel for better performance.
+     * Uploads multiple images in parallel for better performance.
+     * Images are uploaded concurrently using coroutines to reduce wait time.
+     * 
+     * @param uris List of image URIs to upload
      */
     fun uploadImages(uris: List<Uri>) {
         viewModelScope.launch {
