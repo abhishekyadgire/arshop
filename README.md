@@ -2,6 +2,17 @@
 
 ARShop is a native Android e-commerce application with integrated Augmented Reality (AR) virtual try-on capabilities for clothing and footwear. Built with Kotlin and Jetpack Compose, the app allows users to visualize how products look on them before purchase, enhancing shopping confidence and reducing uncertainty.
 
+## 🚀 **Want to Run This App?**
+
+### 👉 **[START HERE: Step-by-Step Guide](HOW_TO_RUN.md)** 👈
+
+Complete beginner-friendly instructions to get the app running in 30-45 minutes.
+
+**Quick Links:**
+- 📖 [HOW_TO_RUN.md](HOW_TO_RUN.md) - Full step-by-step guide (recommended)
+- 📋 [START_HERE.md](START_HERE.md) - Quick reference and overview
+- ⚡ [QUICKSTART.md](QUICKSTART.md) - 5-minute summary
+
 ## Features
 
 ### Core Features
